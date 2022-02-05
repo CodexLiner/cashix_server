@@ -30,7 +30,7 @@ router.post("/verify", async (req, res) => {
   });
   try {
     const otpSaved = await otpSchema.save();
-    await otpSender(req.body.mobile, mOtp);
+    // await otpSender(req.body.mobile, mOtp);
     res.send(otpSaved);
   } catch (e) {
     console.log(e);
