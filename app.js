@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("dotenv/config");
-
+const PORT = process.env.PORT || 5000
 //routes
 const loginRoutes = require("./routes/loginRoute");
 const bankRoute = require("./routes/bankDetails");
@@ -22,4 +22,4 @@ mongoose.connect(process.env.DB, () => {
   console.log("db connected!");
 });
 // server start
-app.listen(3000);
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
