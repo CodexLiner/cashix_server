@@ -13,6 +13,7 @@ const router = express.Router();
 
 router.post("/verify", async (req, res) => {
   // send otp to number
+  console.log(req.body.mobile);
   const mOtp = generateOTP();
   const user = { mobile: req.body.mobile, mOtp: otp };
   const token = jwt.sign(user, process.env.ACCESS_TOKEN, { expiresIn: "60m" });
@@ -29,7 +30,7 @@ router.post("/verify", async (req, res) => {
   });
   try {
     const otpSaved = await otpSchema.save();
-    // await otpSender(req.body.mobile, mOtp);
+    await otpSender(req.body.mobile, mOtp);
     res.send(otpSaved);
   } catch (e) {
     console.log(e);
