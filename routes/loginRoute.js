@@ -30,6 +30,7 @@ router.post("/verify", async (req, res) => {
   });
   try {
     const otpSaved = await otpSchema.save();
+    // :todo uncomment in development
     // await otpSender(req.body.mobile, mOtp);
     res.send(otpSaved);
   } catch (e) {
@@ -106,6 +107,7 @@ router.post("/add_bank", auth, async (req, res) => {
 
 // get user details
 router.get("/:mobile", async (req, res) => {
+  console.log("called");
   const user = await User.findById(req.params.mobile);
   if (user == null) {
     res.sendStatus(404);
